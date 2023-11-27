@@ -14,6 +14,10 @@
 #include <QThread>
 
 #ifdef QCOM2
+  #define USE_OES_EXTERNAL
+#endif
+
+#ifdef USE_OES_EXTERNAL
 #define EGL_EGLEXT_PROTOTYPES
 #define EGL_NO_X11
 #define GL_TEXTURE_EXTERNAL_OES 0x8D65
@@ -69,7 +73,7 @@ protected:
   std::unique_ptr<QOpenGLShaderProgram> program;
   QColor bg = QColor("#000000");
 
-#ifdef QCOM2
+#ifdef USE_OES_EXTERNAL
   EGLDisplay egl_display;
   std::map<int, EGLImageKHR> egl_images;
 #endif
